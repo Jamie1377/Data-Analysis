@@ -1,0 +1,117 @@
+---
+title: "Analyzing the EAFC 24 players"
+author: "Yue Yu"
+output:
+  pdf_document:
+    latex_engine: xelatex
+---
+
+# Introduction
+
+FIFA series is one of the football videogames series, which has been officially renamed to EA Sports FC 24 from the season 2023/24 it due to the termination of collaboration with FIFA. 
+
+This project aims to leverage database tool <b>PostgreSQL</b> and statistical analysis language <b>R</b> to analyze the FIFA players dataset available at [this](https://www.kaggle.com/datasets/stefanoleone992/ea-sports-fc-24-complete-player-dataset). This dataset includes full information regarding players such as age, overall and potential attributes, club and league name, positions, and many others from the latest 10 editions of FIFA (from the FIFA 15 to the EAFC 24). Before discussing specific question, the dataset above would be cleaned and manipulated by <b>PostgreSQL</b> to make sure it's appropriate to used for data analysis.
+
+The first part is to investigate the relationship between football players’ potential for each country with more than 1000 players and various factors such as their overall rating and count of players from the country. 
+
+The next step is the analysis of the players dataset, looking for insights about clubs, leagues and players.
+
+# Load data
+```{r message=FALSE}
+library(tidyverse)
+library(htmltools)
+library(vtable)
+library(dplyr)
+country.and.pot=read_csv("/home/jovyan/EAFC24/country and pot.csv")
+```
+
+# Regression model choice
+
+We choose the linear regression model for the data set and fit the relevant EAFC data with a linear regression model using R:
+
+# t-Test
+
+In multiple regression, t-test is applied to assess the significance of each predictor variable. The t-test measures whether the coefficient for a particular predictor is significantly different from zero. It can be achieved by comparing <b>p-value</b> and significance level <b>α</b>, .05.  If the t-value associated with a predictor is <b>sufficiently large</b>, it suggests that the predictor is contributing significantly to the model.
+
+```{r}
+attach(country.and.pot)
+summary(country.and.pot)
+fit = lm(avgpot ~ avgrating + cnt + cnt:avgrating ,
+        data = country.and.pot)
+summary(fit)
+```
+```{r}
+plot(country.and.pot$avgrating, avgpot,
+     main = "Overall versus Potential",
+     xlab = "overall", ylab = "Potential")
+
+plot(country.and.pot$avgrating, cnt,
+     main = "Overall versus number of players from the country or region",
+     xlab = "count", ylab = "Potential")
+```
+
+<ul>
+  <li> There is a roughly a linear relationship with slope 1.023  between average rating and average potential of players on the planet.</li>
+  <li> It is approxiately a straight line y = x where y is potential and x is overall rating. </li>
+  <li> It is difficult to find a clear pattern  between potential and count. </li>
+</ul>  
+
+# Confidence Interval of 'avgrating'
+```{r}
+t_value = qt(.975 , df = 37)
+se = 8.122e-02
+beta_hat = 1.023e+00 #avgrating
+c( beta_hat - t_value * se ,
+beta_hat + t_value * se )
+
+se2 = 1.599e-05
+beta_hat2 = -2.988e-05 #avgrating:cnt
+c( beta_hat2 - t_value * se2,
+beta_hat2 + t_value * se2 ) 
+```
+
+<ul>
+  <li>The reduced model is sufficient when keeps 'avgrating' (strong evidence to reject the null hypothesis that reduce 'avgrating' is sufficient) due to its small p-value compare to the level (.05). </li>
+  <li>The code draws no conclusion on the "avgrating:cnt" as its p-value is higher than .05 and 0 and its coefficient both falls in the C.I. (-6.227882e-05 , 2.518817e-06). </li>
+</ul>  
+
+# F Test on multiple linear regression
+
+The F-test assesses the overall significance of a group of predictor variables in a multiple regression model. The full model contains all predictors. It tests whether at least one of the predictor variables in the model has a non-zero coefficient by reducing these predictors. Such model is reduced model.
+
+```{r}
+fit_full = lm ( avgpot ~ avgrating + cnt + cnt:avgrating, data = country.and.pot )
+fit_reduced = lm (avgpot ~ avgrating + cnt:avgrating, data = country.and.pot )
+anova ( fit_reduced , fit_full) 
+
+fit_reduced1 = lm (avgpot ~  cnt , data = country.and.pot )
+anova ( fit_reduced1 , fit_full) 
+```
+<ul>
+  <li> The F test demonstrates same result from the t-test: there is strong evidence to reject the null hypothesis that coefficient of 'avgrating' can be 0. </li>
+</ul>  
+
+# Regression diagnostics
+
+We now plot the residuals versus the fitted values, and a QQ plot and other for this regression model fit.
+
+```{r}
+fitted_values = fitted(fit)
+residual_values = resid(fit)
+
+sresidual_values = rstandard(fit)
+     
+plot(fitted_values, sresidual_values, 
+     main = "EAFC 24: fitted versus residual values", 
+     xlab = "Fitted", 
+     ylab = "Standardized residuals")
+
+
+hist(rstandard(fit), xlab = "Standardized residuals", main = "Standardized residuals histogram")
+plot(fit, which=1)
+plot(fit, which = 2)
+```
+
+# Conclusions
+
+TBD
