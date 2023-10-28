@@ -1,0 +1,259 @@
+
+
+
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>JupyterHub</title>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+    <link rel="stylesheet" href="/hub/static/css/style.min.css?v=01598a5386176f0279952a3b9632a07e7fce9a12aa53108973c83be9ec3473e7a59354876fab64bfeb01892eb503870183707aa03f207d7a94845ca7980c3819" type="text/css"/>
+    
+<link rel="stylesheet" href="/hub/static/extra-assets/css/login.css?v=2c264e23c4d3af679b77064eb014927c134fe3b4dc70f0a33188de38f4600d8fad9a1f8d084ec38ef05673de1c6b6b1fbfffc4493fd11cc15d685a19688d31da" type="text/css"/>
+
+    
+    <link rel="icon" href="/hub/static/favicon.ico?v=fde5757cd3892b979919d3b1faa88a410f28829feb5ba22b6cf069f2c6c98675fceef90f932e49b510e74d65c681d5846b943e7f7cc1b41867422f0481085c1f" type="image/x-icon">
+    
+    
+    <script src="/hub/static/components/requirejs/require.js?v=bd1aa102bdb0b27fbf712b32cfcd29b016c272acf3d864ee8469376eaddd032cadcf827ff17c05a8c8e20061418fe58cf79947049f5c0dff3b4f73fcc8cad8ec" type="text/javascript" charset="utf-8"></script>
+    <script src="/hub/static/components/jquery/dist/jquery.min.js?v=de027062931edd07b01842eff24fc15fdbdcaa1af245dcd133155faba9e0c965f0a34dc6144ce3b149bc43b4597073c792cb6dabbfc6168c63095523923bcf77" type="text/javascript" charset="utf-8"></script>
+    <script src="/hub/static/components/bootstrap/dist/js/bootstrap.min.js?v=a014e9acc78d10a0a7a9fbaa29deac6ef17398542d9574b77b40bf446155d210fa43384757e3837da41b025998ebfab4b9b6f094033f9c226392b800df068bce" type="text/javascript" charset="utf-8"></script>
+    
+    <script>
+      require.config({
+          
+          urlArgs: "v=20231019171221",
+          
+          baseUrl: '/hub/static/js',
+          paths: {
+            components: '../components',
+            jquery: '../components/jquery/dist/jquery.min',
+            bootstrap: '../components/bootstrap/dist/js/bootstrap.min',
+            moment: "../components/moment/moment",
+          },
+          shim: {
+            bootstrap: {
+              deps: ["jquery"],
+              exports: "bootstrap"
+            },
+          }
+      });
+    </script>
+
+    <script type="text/javascript">
+      window.jhdata = {
+        base_url: "/hub/",
+        prefix: "/",
+        
+        
+        admin_access: false,
+        
+        
+        options_form: false,
+        
+        xsrf_token: "2|e1dd1ea4|713599c3a9471cd93b5b13b9217234f7|1698460321",
+      }
+    </script>
+
+    
+    
+
+</head>
+
+<body>
+
+<noscript>
+  <div id='noscript'>
+    JupyterHub requires JavaScript.<br>
+    Please enable it to proceed.
+  </div>
+</noscript>
+
+
+
+
+
+
+
+
+
+
+
+<div class="container login-header" id="home" data-authenticator-login-url="/hub/oauth_login?next=%2Fhub%2Fapi%2Foauth2%2Fauthorize%3Fclient_id%3Djupyterhub-user-yueyuyu.yu%252540mail.utoronto.ca%26redirect_uri%3D%252Fuser%252Fyueyuyu.yu%2540mail.utoronto.ca%252Foauth_callback%26response_type%3Dcode%26state%3DeyJ1dWlkIjogIjNlMWNlMDk0MWFkZjRlZmJhN2NkOGEwYzFhOTUyY2QyIiwgIm5leHRfdXJsIjogIi91c2VyL3l1ZXl1eXUueXVAbWFpbC51dG9yb250by5jYS9yc3R1ZGlvL2ZpbGVzL0VBRkMyNC1Qcm9qZWN0Lmh0bWwifQ">
+  <div class="text-center">
+    <p class="hub-login-text">The 2i2c JupyterHub for <a href="https://www.utoronto.ca/">University of Toronto</a></p><br />
+    <a href="https://www.utoronto.ca/">
+      <img src="https://raw.githubusercontent.com/2i2c-org/default-hub-homepage/utoronto-prod/extra-assets/images/home-hero.png" alt="University of Toronto logo" class='hub-logo'
+        title='hub logo' />
+    </a>
+  <div id="operated-by">
+      Operated by: <a href="https://2i2c.org">2i2c</a> |
+      Funded by: <a href="https://www.utoronto.ca/">University of Toronto</a> |
+      Designed by: <a href="https://2i2c.org">2i2c</a>
+  </div>
+  </div>
+  <div class="login-container text-center">
+    
+    <a role="button" class='btn btn-jupyter btn-lg' href='/hub/oauth_login?next=%2Fhub%2Fapi%2Foauth2%2Fauthorize%3Fclient_id%3Djupyterhub-user-yueyuyu.yu%252540mail.utoronto.ca%26redirect_uri%3D%252Fuser%252Fyueyuyu.yu%2540mail.utoronto.ca%252Foauth_callback%26response_type%3Dcode%26state%3DeyJ1dWlkIjogIjNlMWNlMDk0MWFkZjRlZmJhN2NkOGEwYzFhOTUyY2QyIiwgIm5leHRfdXJsIjogIi91c2VyL3l1ZXl1eXUueXVAbWFpbC51dG9yb250by5jYS9yc3R1ZGlvL2ZpbGVzL0VBRkMyNC1Qcm9qZWN0Lmh0bWwifQ'>
+      Log in to continue
+    </a>
+    
+  </div>
+
+  <div class="col-md-8 col-md-offset-2 details">
+    <div class="col-md-6">
+      <big class="details-welcome lead">
+      Welcome to the <a href="https://www.utoronto.ca/">University of Toronto</a> <strong>2i2c JupyterHub</strong>.
+      </big>
+      <br />
+      <br />
+      This is a pilot service running on open source infrastructure.
+      See <a href="https://2i2c.org/pilot">the 2i2c Pilot documentation</a> for usage and deployment information.</p>
+    </div>
+    <div class="col-md-6 details-logos">
+      <div class="pull-right">
+        <a href="https://jupyter.org">
+          <img src="/hub/static/extra-assets/images/jupyter-logo.svg?v=96370e7bd3e5e2b445dfbfcbed723bca8e8c5f2a41d60849cf43daa6ca0fb9c28a384dd94bc891d07273230da4e797d9f6ceec2db6e7bdf933d84ce33353ba3a" alt='Jupyter' height="64" />
+        </a>
+      </div>
+      <div class="pull-right">
+        <a href="https://rstudio.com">
+          <img src="/hub/static/extra-assets/images/rstudio-logo.svg?v=fb10d98fa9836ea5204294cd30c373fb7ce306a0cdb08c744de5c1e9e09a3376cf3bff9fea8bff1b48f6f946a3fdaecfa5cca04d0e7be980c0223669db297b5b" alt='RStudio' height="64"/>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  
+    <div class="col-md-8 col-md-offset-2 announcements" >
+      
+      <div class="announcements-text">
+        <div>
+  <h4>* NEW * Jupyter Support Website</h4>
+
+  We have started a JupyterHub support website with documentation and tip sheets, and we will be adding more on an
+  ongoing basis. To reach the support site, please visit: <a href="https://act.utoronto.ca/jupyterhub-support">https://act.utoronto.ca/jupyterhub-support/</a>.
+</div>
+
+      </div>
+      
+    </div>
+  
+
+  <div class="col-md-8 col-md-offset-2 questions">
+    <div>
+      <h4>Where can I learn more?</h4>
+
+      The <a href="https://2i2c.org/pilot">2i2c Pilot Hubs Documentation</a> has all of the information that you need to use the hub, as well as information about the deployment technology.
+    </div>
+    <div>
+      <h4>What is a Jupyter Notebook?</h4>
+
+      <a href="https://jupyter.org">Jupyter Notebook</a> is an open-source web application that allows you to create and
+      share documents that contain live code, equations, visualizations and narrative
+      text. Uses include: data cleaning and transformation, numerical simulation,
+      statistical modeling, data visualization, machine learning, and much more.
+
+    </div>
+
+    <div>
+      <h4>What is JupyterHub?</h4>
+      <a href="https://github.com/jupyterhub/jupyterhub">JupyterHub</a> brings
+      the power of notebooks to groups of users. It gives users access to
+      computational environments and resources without burdening the users with
+      installation and maintenance tasks. Users - including students,
+      researchers, and data scientists - can get their work done in their own
+      workspaces on shared resources which can be managed efficiently by system
+      administrators.
+    </div>
+
+    <div>
+      <h4>Who can use this service?</h4>
+
+      This JupyterHub service is open to anyone that a hub administrator has approved.
+      Generally this means instructors and students. As this
+      is a proof-of-concept service, students should ensure they are backing up
+      their notebooks regularly if they are using this service for course
+      activities.
+    </div>
+
+  <div class="footer">
+    <p>
+      This service is run transparently from
+      <a href="https://github.com/2i2c-org/pilot-hubs">
+        github.com/2i2c-org/pilot-hubs
+      </a>
+    </p>
+    <p>
+      Built with
+      <a href="https://k8s.org">Kubernetes</a>,
+      <a href="https://helm.sh">Helm</a>,
+      <a href="https://docker.com">Docker</a>,
+      <a href="https://github.com/conda-forge/miniforge">Miniforge</a> and
+      many parts of the <a href="https://jupyter.org">Jupyter Project</a>
+      </p>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="modal fade" id="error-dialog" tabindex="-1" role="dialog" aria-labelledby="error-label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h1 class="modal-title" id="error-label">Error</h1>
+      </div>
+      <div class="modal-body">
+        
+  <div class="ajax-error">
+    The error
+  </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<script>
+if (window.location.protocol === "http:") {
+  // unhide http warning
+  var warning = document.getElementById('insecure-login-warning');
+  warning.className = warning.className.replace(/\bhidden\b/, '');
+}
+// setup onSubmit feedback
+$('form').submit((e) => {
+  var form = $(e.target);
+  form.find('.feedback-container>input').attr('disabled', true);
+  form.find('.feedback-container>*').toggleClass('hidden');
+  form.find('.feedback-widget>*').toggleClass('fa-pulse');
+});
+</script>
+
+<script src="/hub/static/extra-assets/js/login.js?v=eb4b69babd50286a11204c68bf439c815ffae73f382fb607c51a5e2b4ad36ebc681e4370f1eb5fb700d89014385f750742bb357e7c401b01bae2ec02856b1799"></script>
+
+
+</body>
+
+</html>
